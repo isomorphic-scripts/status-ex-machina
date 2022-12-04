@@ -114,7 +114,10 @@ function mergeBoundingBoxes (boxes) {
     );
 }
 
-const MeasureContext = createContext(null);
+const MeasureContext = createContext(
+    /** @type {{report:(name:any, measure:any, styles:any)=>()=>void}|null} */
+    (null)
+);
 
 /**
  *
@@ -157,7 +160,11 @@ function DomMeasured ({
     report,
 }) {
     const [reported, setReported] = useState(false);
-    const reference = createRef(null);
+    /** */
+    const reference = createRef(
+        /**@type {React.RefObject<HTMLSpanElement>} */
+        (null)
+    );
     useEffect(
         () => {
             if(!reported) {
