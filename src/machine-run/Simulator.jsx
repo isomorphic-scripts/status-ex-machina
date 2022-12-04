@@ -132,7 +132,8 @@ function RenderingLayout ({ children }) {
                         styles,
                         text,
                         mergeBoundingBoxes(Object.entries(text).map(entries => entries[1]))
-                    ].map(console.log); //eslint-disable-line no-console
+                    ].forEach(console.log); //eslint-disable-line no-console
+                    return;
                 },
             }}
         >
