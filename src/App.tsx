@@ -1,16 +1,21 @@
 import React from 'react';
+
+import {
+    StyledApp,
+    StyledAppHeader,
+} from "./styles"
 import Writer from './Writer';
 import Simulator from './machine-run/Simulator.jsx';
-import './App.css';
+
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
+        <StyledApp>
+            <StyledAppHeader>
                 <Writer />
                 <Simulator />
-            </header>
-        </div>
+            </StyledAppHeader>
+        </StyledApp>
     );
 }
 
