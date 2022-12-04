@@ -1,10 +1,35 @@
 //@ts-check
+
+/**
+ *
+ * @param {*} step
+ * @param {*} computedSteps
+ * @param {*} index
+ * @param {*} lower
+ * @returns
+ */
+function findLowerBound(step, computedSteps, index, lower) {
+    if (typeof step.fixedKeyFrame === 'number') {
+        computedSteps[index].displayedKey = step.fixedKeyFrame;
+        if (lower === null) {
+            for (let iterator = 0; iterator < index; iterator++) {
+                computedSteps[iterator].displayedKey = step.fixedKeyFrame * (iterator + 1) / (index + 1);
+            }
+        } else {
+            for (let iterator = lower + 1; iterator < index; iterator++) {
+                computedSteps[iterator].displayedKey = computedSteps[lower].fixedKeyFrame + (step.fixedKeyFrame - computedSteps[lower].fixedKeyFrame) * (iterator - lower) / (index - lower);
+            }
+        }
+        lower = index;
+    }
+    return lower;
+}
+
 /**
  *
  * @param {*} steps
  * @returns
  */
-
 export default function fillKeyPercent(steps) {
     /** @type {number | null} */
     let lower = null;
@@ -13,19 +38,7 @@ export default function fillKeyPercent(steps) {
 
             computedSteps.push(step);
 
-            if (typeof step.fixedKeyFrame === 'number') {
-                computedSteps[index].displayedKey = step.fixedKeyFrame;
-                if (lower === null) {
-                    for (let iterator = 0; iterator < index; iterator++) {
-                        computedSteps[iterator].displayedKey = step.fixedKeyFrame * (iterator + 1) / (index + 1);
-                    }
-                } else {
-                    for (let iterator = lower + 1; iterator < index; iterator++) {
-                        computedSteps[iterator].displayedKey = computedSteps[lower].fixedKeyFrame + (step.fixedKeyFrame - computedSteps[lower].fixedKeyFrame) * (iterator - lower) / (index - lower);
-                    }
-                }
-                lower = index;
-            }
+            lower = findLowerBound(step, computedSteps, index, lower);
             if (index === steps.length - 1) {
                 if (lower === null) {
                     for (let iterator = 0; iterator < steps.length; iterator++) {
