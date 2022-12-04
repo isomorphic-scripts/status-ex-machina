@@ -3,11 +3,6 @@ import propTypes from 'prop-types';
 import { Constrained } from "../contexts/Constraint";
 import { CssFrame } from './styles';
 
-// const validations = [
-//     (value) => parseFloat(value) <= 0? 'below_or_equal_0' : '',
-//     (value) => parseFloat(value) >= 100? 'above_or_equal_100' : ''
-// ];
-
 /**
  *
  * @param {import('../../writer').FixedKeyFrameProps} props
