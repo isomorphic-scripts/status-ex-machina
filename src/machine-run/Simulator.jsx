@@ -133,7 +133,6 @@ function RenderingLayout ({ children }) {
                         text,
                         mergeBoundingBoxes(Object.entries(text).map(entries => entries[1]))
                     ].forEach(console.log); //eslint-disable-line no-console
-                    return;
                 },
             }}
         >
