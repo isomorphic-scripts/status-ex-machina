@@ -42,7 +42,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test --cacheDirectory .jest/cache",
+        "test": "cp .mocks/cssTransform.js node_modules/react-scripts/config/jest/cssTransform.js;react-scripts test --cacheDirectory .jest/cache",
         "eject": "react-scripts eject",
         "test:coverage": "npm run test -- --watchAll false --coverage",
         "test:showConfig": "npm run test -- --showConfig"
